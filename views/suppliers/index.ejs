@@ -1,0 +1,33 @@
+<%- include('../partials/header', { title: 'Suppliers List' }) %>
+
+<h2>Suppliers</h2>
+<a class="btn btn-primary mb-2" href="/suppliers/new">Add Supplier</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% suppliers.forEach((supplier, index) => { %>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td><%= supplier.name %></td>
+            <td><%= supplier.address %></td>
+            <td><%= supplier.phone %></td>
+            <td>
+                <a class="btn btn-sm btn-warning" href="/suppliers/edit/<%= supplier._id %>">Edit</a>
+                <form style="display:inline" action="/suppliers/delete/<%= supplier._id %>" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+<%- include('../partials/footer') %>
